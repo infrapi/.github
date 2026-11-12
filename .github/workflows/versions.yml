@@ -1,0 +1,39 @@
+name: Versions
+
+# Keeps the products' versions in profile/README.md on their latest release.
+on:
+  # sent by a product repository's notify-docs workflow after a release
+  # (and when its docs/ change)
+  repository_dispatch:
+    types: [docs-updated]
+  # safety net for a missed dispatch
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: versions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set the latest release of each product
+        run: scripts/versions.sh
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Commit if a version changed
+        run: |
+          git diff --quiet && { echo "versions up to date"; exit 0; }
+          git diff
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "docs: update product versions"
+          git push
