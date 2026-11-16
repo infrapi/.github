@@ -50,7 +50,7 @@ Each one stands alone. Together, they are a platform.
 
 | | Product | | What it does |
 |---|---|---|---|
-| 🛡️ | **[Kayra](https://github.com/infrapi/kayra)** | `v0.9.0` preview | Identity, namespaces and RBAC for your platform. Who callers are, which tenant they act in, what they may do there, and which APIs each tenant is subscribed to. · [Docs](https://infrapi.io/products/kayra/) |
+| 🛡️ | **[Kayra](https://github.com/infrapi/kayra)** | `v0.10.0` preview | Identity, namespaces and RBAC for your platform. Who callers are, which tenant they act in, what they may do there, and which APIs each tenant is subscribed to. · [Docs](https://infrapi.io/products/kayra/) |
 | 🔌 | **[tofu-api](https://github.com/infrapi/tofu-api)** | `v0.9.1` early | Any OpenTofu or Terraform provider as a REST API. An OpenAPI contract generated from the provider's schemas, rules in one YAML file per provider, no code per resource. · [Docs](https://infrapi.io/products/tofu-api/) |
 | 🧱 | **[lib](https://github.com/infrapi/lib)** | `v0.16.0` preview | The Go foundation of every InfraPI service. URL layout, auth, contract enforcement, RFC 9457 errors, metrics, tracing and Vault, shared by every service. · [Docs](https://infrapi.io/products/lib/) |
 
