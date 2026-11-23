@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 token=${GH_TOKEN:-${GITHUB_TOKEN:-}}
 readme=profile/README.md
 
-for repo in kayra tofu-api lib; do
+for repo in kayra tofu-api ulgen lib; do
   tag=$(curl -fsSL ${token:+-H "Authorization: Bearer $token"} \
           "https://api.github.com/repos/infrapi/$repo/releases/latest" | jq -er .tag_name)
   grep -q "^|.*\*\*\[[^]]*\](https://github.com/infrapi/$repo)\*\*" "$readme" \
