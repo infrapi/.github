@@ -52,13 +52,14 @@ Each one stands alone. Together, they are a platform.
 |---|---|---|---|
 | 🛡️ | **[Kayra](https://github.com/infrapi/kayra)** | `v0.13.0` preview | Identity, namespaces and RBAC for your platform. Who callers are, which tenant they act in, what they may do there, and which APIs each tenant is subscribed to. · [Docs](https://infrapi.io/products/kayra/) |
 | 🔌 | **[tofu-api](https://github.com/infrapi/tofu-api)** | `v0.11.0` early | Any OpenTofu or Terraform provider as a REST API. An OpenAPI contract generated from the provider's schemas, rules in one YAML file per provider, no code per resource. · [Docs](https://infrapi.io/products/tofu-api/) |
+| 🤖 | **[ulgen](https://github.com/infrapi/ulgen)** | `v0.3.0` early | One MCP endpoint for AI agents, authorized per tenant by Kayra. Several MCP servers behind it, every tool scoped to a tenant, every call checked against Kayra and made with the tenant's credential. · [Docs](https://infrapi.io/products/ulgen/) |
 | 🧱 | **[lib](https://github.com/infrapi/lib)** | `v0.19.0` preview | The Go foundation of every InfraPI service. URL layout, auth, contract enforcement, RFC 9457 errors, metrics, tracing and Vault, shared by every service. · [Docs](https://infrapi.io/products/lib/) |
 
 ## How it fits together
 
 ```
- Callers      Portal · CLI · CI/CD · Scripts
-                  │  bearer token · REST · OpenAPI
+ Callers      Portal · CLI · CI/CD · Scripts · AI agents ──MCP──► ulgen
+                  │  bearer token · REST · OpenAPI · MCP   (one endpoint, checked per tenant by Kayra)
                   ▼
  APIs         tofu-api ─┬─ Your services   ──►  Kayra
               (any      │  (built on lib)       may this caller do this?
@@ -112,7 +113,7 @@ curl -X POST :8080/aws/v1/namespaces/acme/instance \
 ## Why InfraPI
 
 - **Composable** — adopt one piece at a time: tofu-api alone in front of one
-  product, Kayra for tenancy and RBAC, lib for your own services.
+  product, Kayra for tenancy and RBAC, ulgen for AI agents, lib for your own services.
 - **Contract-first** — every API serves its OpenAPI contract and rejects any
   request that does not match it, before a handler runs.
 - **Multi-tenant by design** — namespaces are the tenants. With tofu-api each
@@ -134,5 +135,6 @@ Every InfraPI product is developed in the open under the MIT license. Use it,
 fork it, open an issue or send a pull request:
 [Kayra](https://github.com/infrapi/kayra/issues) ·
 [tofu-api](https://github.com/infrapi/tofu-api/issues) ·
+[ulgen](https://github.com/infrapi/ulgen/issues) ·
 [lib](https://github.com/infrapi/lib/issues) ·
 [docs](https://github.com/infrapi/docs).
