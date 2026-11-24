@@ -2,7 +2,7 @@ name: Versions
 
 # Keeps the products' versions in profile/README.md on their latest release.
 on:
-  # sent by a product repository's notify-docs workflow after a release
+  # sent by a product repository's CI (infrapi/ci's Go workflow, notify-docs) after a release
   # (and when its docs/ change)
   repository_dispatch:
     types: [docs-updated]
